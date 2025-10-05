@@ -1,0 +1,3 @@
+/Users/efaraz27/Desktop/Projects/redis-clone/build/CMakeFiles/main.dir
+/Users/efaraz27/Desktop/Projects/redis-clone/build/CMakeFiles/edit_cache.dir
+/Users/efaraz27/Desktop/Projects/redis-clone/build/CMakeFiles/rebuild_cache.dir
