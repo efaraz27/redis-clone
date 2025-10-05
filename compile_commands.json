@@ -1,8 +1,0 @@
-[
-{
-  "directory": "/Users/efaraz27/Desktop/Projects/redis-clone/build",
-  "command": "/usr/bin/c++  -I/Users/efaraz27/Desktop/Projects/redis-clone/include -std=gnu++17 -arch arm64 -o CMakeFiles/main.dir/src/main.cpp.o -c /Users/efaraz27/Desktop/Projects/redis-clone/src/main.cpp",
-  "file": "/Users/efaraz27/Desktop/Projects/redis-clone/src/main.cpp",
-  "output": "CMakeFiles/main.dir/src/main.cpp.o"
-}
-]
