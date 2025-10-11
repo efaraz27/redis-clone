@@ -1,8 +1,13 @@
 #include "Server.hpp"
+#include "CommandHandler.hpp"
+#include <cstring>
 #include <iostream>
 #include <netinet/in.h>
+#include <string>
 #include <sys/socket.h>
+#include <thread>
 #include <unistd.h>
+#include <vector>
 
 static Server *g_server = nullptr;
 
@@ -49,4 +54,40 @@ void Server::run() {
   }
 
   std::cout << "Server listening on port: " << m_port << ".\n";
+
+  std::vector<std::thread> threads;
+  CommandHandler cmd_handler;
+
+  while (m_running) {
+
+    int client_socket = accept(m_server_sock, nullptr, nullptr);
+    if (client_socket < 0) {
+      if (m_running) {
+        std::cerr << "Error accepting client connection.\n";
+      }
+      break;
+    }
+
+    threads.emplace_back([client_socket, &cmd_handler]() {
+      char buffer[1024];
+      while (true) {
+        memset(buffer, 0, sizeof(buffer));
+
+        int bytes = recv(client_socket, buffer, sizeof(buffer) - 1, 0);
+        if (bytes <= 0)
+          break;
+
+        std::string request(buffer, bytes);
+        std::string response = cmd_handler.process_cmd(request);
+
+        send(client_socket, response.c_str(), response.size(), 0);
+      }
+      close(client_socket);
+    });
+  }
+
+  for (std::thread &t : threads) {
+    if (t.joinable())
+      t.join();
+  }
 }
