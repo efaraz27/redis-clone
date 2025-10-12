@@ -24,7 +24,7 @@ void Server::stop() {
     close(m_server_sock);
   }
 
-  std::cout << "Server shutdown gracefully.\n";
+  std::cout << "Server shutdown gracefully\n";
 }
 
 void Server::run() {
@@ -49,11 +49,11 @@ void Server::run() {
   }
 
   if (listen(m_server_sock, 10) < 0) {
-    std::cerr << "Error listening on port: " << m_port << ".\n";
+    std::cerr << "Error listening on port: " << m_port << "\n";
     return;
   }
 
-  std::cout << "Server listening on port: " << m_port << ".\n";
+  std::cout << "Server listening on port: " << m_port << "\n";
 
   std::vector<std::thread> threads;
   CommandHandler cmd_handler;

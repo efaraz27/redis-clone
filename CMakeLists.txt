@@ -5,7 +5,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 project(RedisClone CXX)
 
-aux_source_directory(./src SRC_FILES)
+set(SRC_FILES
+    src/main.cpp
+    src/core/Server.cpp
+    src/core/CommandHandler.cpp
+)
 
 add_executable(main ${SRC_FILES})
 
@@ -16,4 +20,3 @@ set_target_properties(main PROPERTIES
     CXX_STANDARD_REQUIRED ON
     CXX_EXTENSIONS ON
 )
-
